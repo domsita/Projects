@@ -11,9 +11,8 @@ var win1 = "1,1,1,1";
 var win2 = "2,2,2,2";
 var lastspot;
 
-
-
 // - - - - - - - MAIN - - - - - -
+
 // Starts the game when button is pressed
 function start() {
   $connectdisplay.empty();
@@ -46,6 +45,7 @@ function lockBoard() {
 }
 
 // - - - - - - - UPDATING THE BOARD - - - - - - -
+
 // Updates the array based on button that was pressed.
 // First, checks to see if the move was valid, records the spot and changes players.
 // Then we print a new board with the move and check if the last spot was a winner.
@@ -58,9 +58,8 @@ function updateBoard(btnpressed) {
   checkWin(lastspot);
 }
 
-/* checks to see that the spot selected by the player is at the bottom of the board.
-If not, returns the value at the bottom of the column selected.
-Essentially, I'm trying to recreate the gravity that happens when a chip is placed into top of the board*/
+// checks to see that the spot selected by the player is at the bottom of the board.
+// If not, returns the value at the bottom of the column selected replicating gravity in the real game.
 function validMove(btn0, btn1) {
   var lowest = new Array();
   for (var i = 0; i <= 5; i+=1) {
@@ -140,6 +139,7 @@ function checkValue(n) {
 }
 
 // - - - - - - CHECKING FOR WIN - - - - - - -
+
 // checks to see if a win condition has been met using the coordinates of the last move.
 function checkWin(lastspot){
   var y = lastspot[0];
@@ -184,10 +184,10 @@ function vert(y, x) {
   }
 }
 
-// - - - -
+// - - - - Diagonal
+
 // Loops through each possible diagonal array checking for a winning sequence.
-// Before looping it checks first that at least one player has picked a spot in the fourth row.
-// Logically there has to be at least one piece in the fourth row for a diagonal win to trigger, so this saves processing time early on.
+// Before looping it checks first that at least one player has picked a spot in the fourth row for efficiency.
 function diag(y, x) {
   var highEnough = board[3];
   highEnough = highEnough.join(",");
